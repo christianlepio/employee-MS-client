@@ -1,5 +1,8 @@
+import { useContext } from "react"
+import ThemeContext from "../context/ThemeProvider"
 
 const SideNav = () => {
+    const { textColor } = useContext(ThemeContext)
     return (
         <>
             <div className="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary overflow-y-auto">
@@ -11,14 +14,14 @@ const SideNav = () => {
                     <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul className="nav flex-column">
                             <li className="nav-item">
-                                <a className="text-secondary nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+                                <a className={`${textColor} nav-link d-flex align-items-center gap-2 active`} aria-current="page" href="#">
                                     <i className="bi bi-speedometer2 mb-1"></i>
                                     Dashboard
                                 </a>
                             </li>
                             
                             <li className="nav-item">
-                                <a className="text-secondary nav-link d-flex align-items-center gap-2" href="#">
+                                <a className={`${textColor} nav-link d-flex align-items-center gap-2`} href="#">
                                     <i className="bi bi-people mb-1"></i>
                                     Employees
                                 </a>
@@ -29,14 +32,14 @@ const SideNav = () => {
 
                         <ul className="nav flex-column mb-auto">
                             <li className="nav-item">
-                                <a className="text-secondary nav-link d-flex align-items-center gap-2" href="#">
+                                <a className={`${textColor} nav-link d-flex align-items-center gap-2`} href="#">
                                     <i className="bi bi-gear-wide-connected mb-1"></i>
                                     Account Settings
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="text-secondary nav-link d-flex align-items-center gap-2" href="#">
-                                    <i className="bi bi-door-closed mb-1"></i>
+                                <a className={`${textColor} nav-link d-flex align-items-center gap-2`} href="#">
+                                    <i className="bi bi-box-arrow-right mb-1"></i>
                                     Sign out
                                 </a>
                             </li>

@@ -17,6 +17,10 @@
   .navbar-search {
     display: block;
   }
+  .sidebar {
+    position: fixed !important;
+    height: calc(100vh - 48px) !important;
+  }
 }
 
 .sidebar .nav-link {

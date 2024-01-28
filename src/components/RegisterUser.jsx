@@ -5,7 +5,7 @@ const RegisterUser = () => {
         <main className="container main-login-regi">
             <div className="row justify-content-center align-items-center my-4 px-3 main-login-regi-content">
                 <div className="col-md-8 rounded-3 border-top border-4 border-info shadow px-3 py-2 mb-4">
-                    <h1 className="h1 mb-4 mt-2 text-center">SIGN UP</h1>
+                    <h1 className="h1 mb-4 mt-3 text-center">SIGN UP</h1>
                     <form className="mx-4 row">
                         <div className="col-md-6 mb-3">
                             <small><label htmlFor="firstnameInput" className="form-label">Firstname</label></small>
@@ -13,7 +13,7 @@ const RegisterUser = () => {
                                 type="text" 
                                 id="firstnameInput"
                                 placeholder="Enter firstname here:"
-                                className="form-control form-control-sm mb-1"
+                                className="form-control mb-1"
                                 required
                             />
                         </div>
@@ -23,7 +23,7 @@ const RegisterUser = () => {
                                 type="text" 
                                 id="lastnameInput"
                                 placeholder="Enter lastname here:"
-                                className="form-control form-control-sm mb-1"
+                                className="form-control mb-1"
                                 required
                             />
                         </div>
@@ -33,7 +33,7 @@ const RegisterUser = () => {
                                 type="date" 
                                 id="birth dateInput"
                                 placeholder="Enter birth date here:"
-                                className="form-control form-control-sm mb-1"
+                                className="form-control mb-1"
                                 required
                             />
                         </div>
@@ -43,7 +43,7 @@ const RegisterUser = () => {
                                 type="text" 
                                 id="usernameInput"
                                 placeholder="Enter username here:"
-                                className="form-control form-control-sm mb-1"
+                                className="form-control mb-1"
                                 autoComplete="off" //to avoid auto suggestion of values from the input
                                 required
                             />
@@ -54,7 +54,7 @@ const RegisterUser = () => {
                                 type="password" 
                                 id="pwdInput"
                                 placeholder="Enter password here:" 
-                                className="form-control form-control-sm mb-1"
+                                className="form-control mb-1"
                                 // value={pwd}
                                 // onChange={(e) => setPwd(e.target.value)}
                                 required
@@ -66,7 +66,7 @@ const RegisterUser = () => {
                                 type="password" 
                                 id="pwdInput2"
                                 placeholder="Confirm password here:" 
-                                className="form-control form-control-sm mb-1"
+                                className="form-control mb-1"
                                 // value={pwd}
                                 // onChange={(e) => setPwd(e.target.value)}
                                 required

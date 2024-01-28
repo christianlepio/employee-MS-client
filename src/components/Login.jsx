@@ -5,7 +5,7 @@ const Login = () => {
         <main className="container main-login-regi">
             <div className="row justify-content-center align-items-center main-login-regi-content px-3">
                 <div className="col-md-4 rounded-3 border-top border-4 border-info shadow px-3 py-2">
-                    <h1 className="h1 mb-4 mt-2 text-center">SIGN IN</h1>
+                    <h1 className="h1 mb-4 mt-3 text-center">SIGN IN</h1>
                     <form className="mx-4">
                         <div className="mb-3">
                             <small><label htmlFor="usernameInput" className="form-label">Username</label></small>

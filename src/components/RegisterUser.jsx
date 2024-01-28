@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
+import useTitle from "../hooks/useTitle"
 
 const RegisterUser = () => {
+    // this will change the document title on top, dynamically
+    useTitle('Register User')
+
     return (
         <main className="container main-login-regi">
             <div className="row justify-content-center align-items-center my-4 px-3 main-login-regi-content">

@@ -7,7 +7,7 @@ const useInput = (key, initValue) => {
 
     const attributeObj = {
         value, 
-        onchange: (e) => setValue(e.target.value)
+        onChange: (e) => setValue(e.target.value)
     }
 
     // return variable/obj attributeObj and value also reset function to be used in login component

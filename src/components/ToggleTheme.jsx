@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
-import ThemeContext from '../context/ThemeProvider'
+import useAuth from '../hooks/useAuth'
 
 const ToggleTheme = () => {
-    const {isDark, setIsDark, setTextColor} = useContext(ThemeContext)
+    const {isDark, setIsDark, setTextColor} = useAuth()
     const [themeIcon, setThemeIcon] = useState('')
 
     useEffect(() => {

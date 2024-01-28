@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import ThemeContext from "../context/ThemeProvider"
+import useAuth from "../hooks/useAuth"
 
 const SideNav = () => {
-    const { textColor } = useContext(ThemeContext)
+    const { textColor } = useAuth()
     return (
         <>
             <div className="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary overflow-y-auto">

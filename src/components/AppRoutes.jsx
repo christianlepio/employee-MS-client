@@ -6,6 +6,7 @@ import MainLayout from "./MainLayout"
 import Login from "./Login"
 import PageNotFound from "./PageNotFound"
 import RegisterUser from "./RegisterUser"
+import { ROLES } from "../config/roles"
 
 const AppRoutes = () => {
     return (

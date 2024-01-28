@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard"
 import MainLayout from "./MainLayout"
 import Login from "./Login"
 import PageNotFound from "./PageNotFound"
+import RegisterUser from "./RegisterUser"
 
 const AppRoutes = () => {
     return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
             {/* parent route */}
             <Route path="/" element={<MainLayout />} >
                 <Route index element={<Login />} />
+                <Route path="register" element={<RegisterUser />} /> 
 
                 {/* dashboard parent route */}
                 <Route path="dash" element={<DashLayout />} >

@@ -1,8 +1,17 @@
-import { useContext } from "react"
 import useAuth from "../hooks/useAuth"
+import useLogout from "../hooks/useLogout"
+import { useNavigate } from "react-router-dom"
 
 const SideNav = () => {
     const { textColor } = useAuth()
+    const navigate = useNavigate()
+    const logout = useLogout()
+
+    const handleLogout = async () => {
+        await logout()
+        navigate('/')
+    }
+
     return (
         <>
             <div className="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary overflow-y-auto">
@@ -38,7 +47,7 @@ const SideNav = () => {
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className={`${textColor} nav-link d-flex align-items-center gap-2`} href="#">
+                                <a className={`${textColor} nav-link d-flex align-items-center gap-2`} href="#" onClick={handleLogout}>
                                     <i className="bi bi-box-arrow-right mb-1"></i>
                                     Sign out
                                 </a>

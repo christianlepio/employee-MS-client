@@ -47,7 +47,7 @@ const SideNav = () => {
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className={`${textColor} nav-link d-flex align-items-center gap-2`} href="#" onClick={handleLogout}>
+                                <a type="button" className={`${textColor} nav-link d-flex align-items-center gap-2`} onClick={handleLogout}>
                                     <i className="bi bi-box-arrow-right mb-1"></i>
                                     Sign out
                                 </a>

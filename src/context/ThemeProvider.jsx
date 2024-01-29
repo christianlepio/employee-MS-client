@@ -7,7 +7,7 @@ export const ThemeProvider = ({ children }) => {
     const [textColor, setTextColor] = useState('text-light')
 
     const [auth, setAuth] = useState({})
-    console.log('auth: ', auth)
+    
     return (
         <ThemeContext.Provider 
             value={{ 

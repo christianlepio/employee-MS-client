@@ -9,7 +9,6 @@ const SideNav = () => {
 
     const handleLogout = async () => {
         await logout()
-        navigate('/')
     }
 
     return (

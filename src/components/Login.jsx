@@ -68,7 +68,7 @@ const Login = () => {
             accessToken && setIsLoading(false)
 
             //set obj values for global auth 
-            setAuth({ user, accessToken })
+            setAuth({ accessToken })
             //from useInput custom hook reset function
             resetUser()
             setPwd('')

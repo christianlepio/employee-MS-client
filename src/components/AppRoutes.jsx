@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
 // components
 import DashLayout from "./DashLayout"
 import Dashboard from "./Dashboard"
@@ -6,22 +7,25 @@ import MainLayout from "./MainLayout"
 import Login from "./Login"
 import PageNotFound from "./PageNotFound"
 import RegisterUser from "./RegisterUser"
-import { ROLES } from "../config/roles"
 import PersistLogin from "./PersistLogin"
 import RequireAuth from "./RequireAuth"
+import { ROLES } from "../config/roles"
 
 const AppRoutes = () => {
+    const { auth } = useAuth()
+
     return (
         <Routes>
             {/* parent route */}
             <Route path="/" element={<MainLayout />} >
-                <Route index element={<Login />} />
-                <Route path="register" element={<RegisterUser />} /> 
-
                 {/* PresistLogin component will get new access token if it is
                     expired and refresh token still not expired to avoid going to 
                     login when browser reloads*/}
                 <Route element={<PersistLogin />}>
+
+                    <Route index element={!auth?.accessToken ? <Login /> : <Navigate to='/dash' />} />
+                    <Route path="register" element={!auth?.accessToken ? <RegisterUser /> : <Navigate to='/dash' />} />
+                    
                     <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />} >
                         {/* dashboard parent route */}
                         <Route path="dash" element={<DashLayout />} >

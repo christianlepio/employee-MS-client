@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 import useRefreshToken from "../hooks/useRefreshToken"
 import useAuth from "../hooks/useAuth"
@@ -27,7 +27,7 @@ const PersistLogin = () => {
                     //get new accessToken
                     await refresh()
                 } catch (err) {
-                    console.error('Persist login error: ', err)
+                    console.log(`${err?.response?.statusText}: please login your credentials...`)
                 } finally {
                     setIsLoading(false)
                 }

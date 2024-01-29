@@ -16,7 +16,7 @@ const useAxiosPrivate = () => {
     useEffect(() => {
         // code below will run on the 2nd time that this useEffect renders due to strict mode update of reactJS
         // useEffect will only run twice in the development env and not in the production env
-        if (effectRan.current === true || import.meta.env.NODE_ENV !== 'development') {
+        if (effectRan.current === true) {
             // add interceptors that will handle JWT tokens that we need and retry get new accessToken if it expires
             
             // this is for initial request after signing in

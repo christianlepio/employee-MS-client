@@ -54,7 +54,7 @@ const Login = () => {
                 //provide the payload (data you are sending)
                 //user and pwd is what our backend is expecting with exact property name
                 //this may be userName: user or password: pwd
-                JSON.stringify({user, pwd}), 
+                JSON.stringify({username: user, password: pwd}), 
                 //third parameter here is an object that is required to post in backend
                 {
                     headers: { 'Content-Type': 'application/json' },
@@ -74,7 +74,7 @@ const Login = () => {
             setPwd('')
             //if user logged in, navigate page to where he/she  
             //requested before logging in, otherwise go to home page
-            navigate(from, { replace: true })
+            navigate('/dash')
 
         } catch (err) {
             if (!err?.response) {

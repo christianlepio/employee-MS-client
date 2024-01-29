@@ -36,7 +36,7 @@ const Dashboard = () => {
 
         tblContent = <>
             <div className="table-responsive">
-                <table className="table table-hover">
+                <table id="example" className="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col"> # </th>
@@ -46,6 +46,7 @@ const Dashboard = () => {
                             <th scope="col">Lastname</th>
                             <th scope="col">Birthdate</th>
                             <th scope="col">Roles</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>

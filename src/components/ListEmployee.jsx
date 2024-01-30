@@ -18,7 +18,7 @@ const ListEmployee = ({ prEmployee, index }) => {
             <td>{prEmployee.lastName}</td>
             <td>{formattedDate}</td>
             <td>{userRolesString}</td>
-            <td><i className="bi bi-eye fs-5"></i></td>
+            <td className="text-center"><i className="bi bi-eye fs-5"></i></td>
         </tr>
     )
 }

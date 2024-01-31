@@ -84,3 +84,16 @@
 .main-login-regi-content {
     height: 95vh;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(161, 156, 156);
+    border-radius: 14px;
+}

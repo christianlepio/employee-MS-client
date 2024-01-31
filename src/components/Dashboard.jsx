@@ -1,7 +1,14 @@
+import { useState } from "react"
 import useTitle from "../hooks/useTitle"
 import useFetchEmployees from "../hooks/useFetchEmployees"
 import ListEmployee from "./ListEmployee"
 import useAuth from "../hooks/useAuth"
+
+import { Button } from 'primereact/button'
+import { DataTable } from 'primereact/datatable'
+import { Column } from 'primereact/column'
+import { FilterMatchMode } from 'primereact/api';
+import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css'
 
 const Dashboard = () => {
     // this will change the document title on top, dynamically
@@ -10,6 +17,8 @@ const Dashboard = () => {
     const { isDark } = useAuth()
 
     const { employees, requestError, isLoading } = useFetchEmployees('/users')
+
+    let confirmedEmp
 
     const empCount = employees.length
 
@@ -23,6 +32,13 @@ const Dashboard = () => {
     const mngrEmpCount = mngrEmp.length
 
     let tblContent
+
+    const [filters, setFilters] = useState({
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    });
+
+    const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
+    const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
     if (isLoading) {
         tblContent = <>
@@ -45,6 +61,22 @@ const Dashboard = () => {
             </div>
         </>
     } else if (employees?.length) {
+        
+        confirmedEmp = employees.map((emp, i) => {
+
+            // set roles array to a string & replace comma to comma space
+            const userRolesString = emp.roles.toString().replaceAll(',', ', ')
+
+            // if user is active then set cell status to table-active
+            const empStatus = emp.active ? 'Active' : 'Inactive'
+
+            //format the birthdate into string
+            const date = new Date(emp.bdate)
+            const options = { year: 'numeric', month: 'long', day: 'numeric' }
+            const formattedDate = date.toLocaleDateString([], options)
+
+            return { ...emp, rowNum: (i + 1), active: empStatus, bdate: formattedDate, roles: userRolesString }
+        })
 
         const tableContent = employees.map((employee, i) => <ListEmployee key={employee._id} prEmployee={employee} index={i} />)
 
@@ -151,7 +183,50 @@ const Dashboard = () => {
 
             <h4 className="h4 mt-5">List of Employees</h4>
 
-            {tblContent}
+            {/* {tblContent} */}
+
+            <div className="p-2 mb-5 mt-4 rounded-3" style={{ backgroundColor: '#2a323d' }}>
+                <div className="row justify-content-end mx-2">
+                    <div className="col-md-3">
+                        <div className="input-group my-3">
+                            <span className="input-group-text" id="basic-addon1"><i className="bi bi-search mb-2"></i></span>
+                            <input 
+                                type="text" 
+                                className="form-control" 
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                onChange={(e) => setFilters({
+                                    global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS },
+                                })}
+                                placeholder="Search Keyword"
+                            />
+                        </div>
+                    </div>
+                </div>
+                
+                <DataTable 
+                    value={confirmedEmp} 
+                    removableSort
+                    stripedRows 
+                    paginator 
+                    rows={10} 
+                    rowsPerPageOptions={[10, 30, 50, 100]}
+                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                    currentPageReportTemplate="{first} to {last} of {totalRecords}" 
+                    paginatorLeft={paginatorLeft} 
+                    paginatorRight={paginatorRight}
+                    selectionMode="single"
+                    filters={filters}
+                >
+                    <Column sortable field="rowNum" header='#'></Column>
+                    <Column sortable field="active" header='Status'></Column>
+                    <Column sortable field="username" header='Username'></Column>
+                    <Column sortable field="firstName" header='Firstname'></Column>
+                    <Column sortable field="lastName" header='Lastname'></Column>
+                    <Column sortable field="bdate" header='Birthdate'></Column>
+                    <Column sortable field="roles" header='Roles'></Column>
+                </DataTable>
+            </div>
         </>
     )
 }

@@ -1,9 +1,10 @@
+import { useEffect } from "react"
 import useAuth from "../hooks/useAuth"
 import useLogout from "../hooks/useLogout"
 import { useNavigate, Link } from "react-router-dom"
 
 const SideNav = () => {
-    const { textColor } = useAuth()
+    const { textColor, actvLink } = useAuth()
     const navigate = useNavigate()
     const logout = useLogout()
 
@@ -21,15 +22,15 @@ const SideNav = () => {
                     </div>
                     <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul className="nav flex-column">
-                            <li className="nav-item">
-                                <Link to='/dash' className={`${textColor} nav-link d-flex align-items-center gap-2 active`} aria-current="page">
+                            <li className={`nav-item ${actvLink === 'Dashboard' ? 'bg-info rounded-2' : null}`}>
+                                <Link to='/dash' className={`${actvLink === 'Dashboard' ? 'text-white' : textColor} nav-link d-flex align-items-center gap-2 active`} aria-current="page">
                                     <i className="bi bi-speedometer2 mb-1"></i>
                                     Dashboard
                                 </Link>
                             </li>
                             
-                            <li className="nav-item">
-                                <Link to='/dash/employees' className={`${textColor} nav-link d-flex align-items-center gap-2`}>
+                            <li className={`nav-item ${actvLink === 'Employees' ? 'bg-info rounded-2' : null}`}>
+                                <Link to='/dash/employees' className={`${actvLink === 'Employees' ? 'text-white' : textColor} nav-link d-flex align-items-center gap-2`}>
                                     <i className="bi bi-people mb-1"></i>
                                     Employees
                                 </Link>

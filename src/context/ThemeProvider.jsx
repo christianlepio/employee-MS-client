@@ -8,6 +8,8 @@ export const ThemeProvider = ({ children }) => {
 
     const [auth, setAuth] = useState({})
     
+    const [actvLink, setActvLink] = useState('')
+
     return (
         <ThemeContext.Provider 
             value={{ 
@@ -16,7 +18,9 @@ export const ThemeProvider = ({ children }) => {
                 textColor, 
                 setTextColor, 
                 auth, 
-                setAuth 
+                setAuth, 
+                actvLink, 
+                setActvLink 
             }}
         >
             {children}

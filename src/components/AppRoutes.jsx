@@ -10,6 +10,7 @@ import RegisterUser from "./RegisterUser"
 import PersistLogin from "./PersistLogin"
 import RequireAuth from "./RequireAuth"
 import { ROLES } from "../config/roles"
+import EmployeePage from "./EmployeePage"
 
 const AppRoutes = () => {
     const { auth } = useAuth()
@@ -30,6 +31,7 @@ const AppRoutes = () => {
                         {/* dashboard parent route */}
                         <Route path="dash" element={<DashLayout />} >
                             <Route index element={<Dashboard />} />
+                            <Route path="employees" element={<EmployeePage />} />
                         </Route> 
                     </Route>
                 </Route>

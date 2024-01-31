@@ -29,7 +29,7 @@ const SideNav = () => {
                             </li>
                             
                             <li className="nav-item">
-                                <Link to='/employee' className={`${textColor} nav-link d-flex align-items-center gap-2`}>
+                                <Link to='/dash/employees' className={`${textColor} nav-link d-flex align-items-center gap-2`}>
                                     <i className="bi bi-people mb-1"></i>
                                     Employees
                                 </Link>

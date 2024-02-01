@@ -9,6 +9,7 @@ import { FilterMatchMode } from 'primereact/api'
 // modal component
 import EmpModal from "./EmpModal"
 import AddEmpModal from "./AddEmpModal"
+import ActionModal from "./ActionModal"
 
 const ListEmployee = ({ employees, requestError, isLoading, isEmpRoute }) => {
     const { isDark } = useAuth()
@@ -43,11 +44,14 @@ const ListEmployee = ({ employees, requestError, isLoading, isEmpRoute }) => {
                         <button 
                             type='button' 
                             className={"btn btn-sm rounded-3 " + (!isDark ? 'btn-light' : 'btn-outline-secondary')} 
-                            // data-bs-toggle="modal" 
-                            // data-bs-target={'#modal'+task.id}
+                            data-bs-toggle="modal" 
+                            data-bs-target={`#actionEmpModal${rowData.rowNum}`}
                         >
                             <i className="bi bi-three-dots-vertical fs-6"></i>
                         </button>
+                        <ActionModal 
+                            actionmdId={`actionEmpModal${rowData.rowNum}`}
+                        />
                     </>
                 }
             </>

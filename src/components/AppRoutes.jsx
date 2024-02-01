@@ -6,7 +6,6 @@ import Dashboard from "./Dashboard"
 import MainLayout from "./MainLayout"
 import Login from "./Login"
 import PageNotFound from "./PageNotFound"
-import RegisterUser from "./RegisterUser"
 import PersistLogin from "./PersistLogin"
 import RequireAuth from "./RequireAuth"
 import { ROLES } from "../config/roles"
@@ -25,7 +24,6 @@ const AppRoutes = () => {
                 <Route element={<PersistLogin />}>
 
                     <Route index element={!auth?.accessToken ? <Login /> : <Navigate to='/dash' />} />
-                    <Route path="register" element={!auth?.accessToken ? <RegisterUser /> : <Navigate to='/dash' />} />
                     
                     <Route element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />} >
                         {/* dashboard parent route */}

@@ -1,9 +1,10 @@
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import useTitle from "../hooks/useTitle"
 import { useEffect, useRef, useState } from "react"
 import useAuth from "../hooks/useAuth"
 import useInput from "../hooks/useInput"
 import axios from "../api/axios"
+import AddEmpModal from "./AddEmpModal"
 
 const LOGIN_URL = '/auth'
 
@@ -155,11 +156,19 @@ const Login = () => {
                                 }
                             </button>
                         </div>
+                        <div className="d-flex mb-4">
+                            <button 
+                                type="button" 
+                                className="btn btn-outline-primary flex-grow-1 mt-2"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#signUpEmpIdModal"
+                                disabled={isLoading}
+                            >
+                                Sign Up
+                            </button>
+                            <AddEmpModal empId={'signUpEmpIdModal'}/>
+                        </div>
                     </form>
-                    <p className="text-center fs-6 mt-3 mb-4">
-                        Need an Account? <br />
-                        <Link to='/register'>Sign Up</Link>
-                    </p>
                 </div>
             </div>
         </main>

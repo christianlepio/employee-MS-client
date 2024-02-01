@@ -8,6 +8,7 @@ import { FilterMatchMode } from 'primereact/api'
 
 // modal component
 import EmpModal from "./EmpModal"
+import AddEmpModal from "./AddEmpModal"
 
 const ListEmployee = ({ employees, requestError, isLoading, isEmpRoute }) => {
     const { isDark } = useAuth()
@@ -143,9 +144,14 @@ const ListEmployee = ({ employees, requestError, isLoading, isEmpRoute }) => {
                         <button 
                             type="button" 
                             className="btn btn-success flex-grow-1 my-3"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#addEmpIdModal"
                         >
                             <i className="bi bi-plus-circle fs-5"></i> &nbsp;New Employee
                         </button>
+                        <AddEmpModal 
+                            empId={'addEmpIdModal'}
+                        />
                     </div>
                 }
                 <div className="col-md-3">

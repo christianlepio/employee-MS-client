@@ -121,7 +121,7 @@ const ListEmployee = ({ employees, requestError, isLoading, isEdit, isDelete }) 
     }, [isDark])
 
     return (
-        <div className={`p-2 mb-5 mt-4 rounded-3 shadow border-top border-3 ${isDark ? 'primeDark' : 'primeLight'}`}>
+        <div className={`p-2 mb-5 mt-4 rounded-3 shadow border-top border-4 ${isDark ? 'primeDark' : 'primeLight'}`}>
             <div className="row justify-content-end mx-2 border rounded-3 mb-3 mt-2">
                 <div className="col-md-3">
                     <div className="input-group my-3">

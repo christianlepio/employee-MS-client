@@ -31,7 +31,7 @@ const Dashboard = () => {
 
             <div className="row justify-content-center my-2 px-2">
                 <div className="col-md px-2 my-2">
-                    <div className="d-flex flex-column border rounded-2 p-3 bg-primary">
+                    <div className="shadow d-flex flex-column border rounded-2 p-3 bg-primary">
                         <div className="d-flex justify-content-start">
                             <div><h5 className="h5 text-white pb-2 border-bottom border-light">Employees</h5></div>
                         </div>
@@ -48,7 +48,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="col-md px-2 my-2">
-                    <div className="d-flex flex-column border rounded-2 p-3 bg-warning">
+                    <div className="shadow d-flex flex-column border rounded-2 p-3 bg-warning">
                         <div className="d-flex justify-content-start">
                             <div><h5 className="h5 text-white pb-2 border-bottom border-light">Active Employees</h5></div>
                         </div>
@@ -65,7 +65,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="col-md px-2 my-2">
-                    <div className="d-flex flex-column border rounded-2 p-3 bg-success">
+                    <div className="shadow d-flex flex-column border rounded-2 p-3 bg-success">
                         <div className="d-flex justify-content-start">
                             <div><h5 className="h5 text-white pb-2 border-bottom border-light">Admin</h5></div>
                         </div>
@@ -82,7 +82,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="col-md px-2 my-2">
-                    <div className="d-flex flex-column border rounded-2 p-3 bg-danger">
+                    <div className="shadow d-flex flex-column border rounded-2 p-3 bg-danger">
                         <div className="d-flex justify-content-start">
                             <div><h5 className="h5 text-white pb-2 border-bottom border-light">Manager</h5></div>
                         </div>

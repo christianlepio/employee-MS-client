@@ -1,5 +1,5 @@
 
-const EmpModal = ({ mdlId, prEmployee, formattedDate, userRolesString }) => {
+const EmpModal = ({ mdlId, prEmployee }) => {
     return (
         <>
             {/* Modal */}
@@ -15,8 +15,8 @@ const EmpModal = ({ mdlId, prEmployee, formattedDate, userRolesString }) => {
                             <p><i className="bi bi-check text-success"></i>&nbsp; {`Username: ${prEmployee.username}`}</p>
                             <p><i className="bi bi-check text-success"></i>&nbsp; {`Firstname: ${prEmployee.firstName}`}</p>
                             <p><i className="bi bi-check text-success"></i>&nbsp; {`Lastname: ${prEmployee.lastName}`}</p>
-                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Birthdate: ${formattedDate}`}</p>
-                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Roles: ${userRolesString}`}</p>
+                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Birthdate: ${prEmployee.bdate}`}</p>
+                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Roles: ${prEmployee.roles}`}</p>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -1,14 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import useAuth from "../hooks/useAuth"
 // datatables
 import { Button } from 'primereact/button'
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
 import { FilterMatchMode } from 'primereact/api';
-import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css'
+// import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css'
 // modal component
 import EmpModal from "./EmpModal"
 
-const ListEmployee = ({ employees, requestError, isLoading }) => {
+const ListEmployee = ({ employees, requestError, isLoading, isEdit, isDelete }) => {
+    const { isDark } = useAuth()
+
     let confirmedEmp
 
     const [filters, setFilters] = useState({
@@ -22,7 +25,7 @@ const ListEmployee = ({ employees, requestError, isLoading }) => {
         return(
             <>
                 <button 
-                    className="btn btn-outline-info" 
+                    className={`btn ${isDark ? 'btn-outline-info' : 'btn-info'}`} 
                     data-bs-toggle="modal" 
                     data-bs-target={`#empModal${rowData.rowNum}`}
                 >
@@ -85,7 +88,6 @@ const ListEmployee = ({ employees, requestError, isLoading }) => {
             <DataTable 
                 value={confirmedEmp} 
                 removableSort
-                stripedRows 
                 paginator 
                 rows={10} 
                 rowsPerPageOptions={[10, 30, 50, 100]}
@@ -110,8 +112,16 @@ const ListEmployee = ({ employees, requestError, isLoading }) => {
         tblContent = <i><strong>System Response Error: </strong>{requestError}</i>
     }
 
+    useEffect(() => {
+        let primeThemeLink = document.getElementById('prime-theme-link');
+
+        primeThemeLink.href = isDark 
+            ? './node_modules/primereact/resources/themes/bootstrap4-dark-blue/theme.css' 
+            : './node_modules/primereact/resources/themes/bootstrap4-light-blue/theme.css'
+    }, [isDark])
+
     return (
-        <div className="p-2 mb-5 mt-4 rounded-3" style={{ backgroundColor: '#2a323d' }}>
+        <div className={`p-2 mb-5 mt-4 rounded-3 shadow border-top border-3 ${isDark ? 'primeDark' : 'primeLight'}`}>
             <div className="row justify-content-end mx-2 border rounded-3 mb-3 mt-2">
                 <div className="col-md-3">
                     <div className="input-group my-3">

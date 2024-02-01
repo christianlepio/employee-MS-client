@@ -85,6 +85,14 @@
     height: 95vh;
 }
 
+.primeDark {
+    background-color: #2a323d !important;
+}
+
+.primeLight {
+    background-color: #fff !important;
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }

@@ -4,12 +4,12 @@ import useAuth from "../hooks/useAuth"
 import { Button } from 'primereact/button'
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
-import { FilterMatchMode } from 'primereact/api';
-// import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css'
+import { FilterMatchMode } from 'primereact/api'
+
 // modal component
 import EmpModal from "./EmpModal"
 
-const ListEmployee = ({ employees, requestError, isLoading, isEdit, isDelete }) => {
+const ListEmployee = ({ employees, requestError, isLoading, isEmpRoute }) => {
     const { isDark } = useAuth()
 
     let confirmedEmp
@@ -24,17 +24,31 @@ const ListEmployee = ({ employees, requestError, isLoading, isEdit, isDelete }) 
     const actionBody = (rowData) => {
         return(
             <>
-                <button 
-                    className={`btn ${isDark ? 'btn-outline-info' : 'btn-info'}`} 
-                    data-bs-toggle="modal" 
-                    data-bs-target={`#empModal${rowData.rowNum}`}
-                >
-                    <i className="bi bi-eye text-white"></i>
-                </button>
-                <EmpModal 
-                    mdlId={`empModal${rowData.rowNum}`}
-                    prEmployee={rowData}
-                />
+                {!isEmpRoute 
+                    ? <>
+                        <button 
+                            className="btn mx-1 my-2 btn-primary"
+                            data-bs-toggle="modal" 
+                            data-bs-target={`#empModal${rowData.rowNum}`}
+                        >
+                            <i className="bi bi-eye text-white"></i>
+                        </button>
+                        <EmpModal 
+                            mdlId={`empModal${rowData.rowNum}`}
+                            prEmployee={rowData}
+                        />
+                    </>
+                    : <>
+                        <button 
+                            type='button' 
+                            className={"btn btn-sm rounded-3 " + (!isDark ? 'btn-light' : 'btn-outline-secondary')} 
+                            // data-bs-toggle="modal" 
+                            // data-bs-target={'#modal'+task.id}
+                        >
+                            <i className="bi bi-three-dots-vertical fs-6"></i>
+                        </button>
+                    </>
+                }
             </>
         )
     }
@@ -47,7 +61,7 @@ const ListEmployee = ({ employees, requestError, isLoading, isEdit, isDelete }) 
 
     if (isLoading) {
         tblContent = <>
-            <div className="d-flex align-items-center justify-content-center">
+            <div className="d-flex align-items-center justify-content-center pb-5">
                 <div className="spinner-grow text-primary mt-5" style={{width: '2rem', height: '2rem'}} role="status">
                     <span className="visually-hidden mt-5">Loading...</span>
                 </div>&nbsp;&nbsp;
@@ -99,12 +113,12 @@ const ListEmployee = ({ employees, requestError, isLoading, isEdit, isDelete }) 
                 filters={filters}
             >
                 <Column sortable field="rowNum" header='#'></Column>
-                <Column sortable field="active" header='Status' body={statusBody}></Column>
                 <Column sortable field="username" header='Username'></Column>
                 <Column sortable field="firstName" header='Firstname'></Column>
                 <Column sortable field="lastName" header='Lastname'></Column>
                 <Column sortable field="bdate" header='Birthdate'></Column>
                 <Column sortable field="roles" header='Roles'></Column>
+                <Column sortable field="active" header='Status' body={statusBody}></Column>
                 <Column body={actionBody} exportable={false} header='Action'></Column>
             </DataTable>
         </>
@@ -116,13 +130,24 @@ const ListEmployee = ({ employees, requestError, isLoading, isEdit, isDelete }) 
         let primeThemeLink = document.getElementById('prime-theme-link');
 
         primeThemeLink.href = isDark 
-            ? './node_modules/primereact/resources/themes/bootstrap4-dark-blue/theme.css' 
-            : './node_modules/primereact/resources/themes/bootstrap4-light-blue/theme.css'
+            ? '/node_modules/primereact/resources/themes/bootstrap4-dark-blue/theme.css' 
+            : '/node_modules/primereact/resources/themes/bootstrap4-light-blue/theme.css'
     }, [isDark])
 
     return (
         <div className={`p-2 mb-5 mt-4 rounded-3 shadow border-top border-4 ${isDark ? 'primeDark' : 'primeLight'}`}>
-            <div className="row justify-content-end mx-2 border rounded-3 mb-3 mt-2">
+            <div className={`row justify-content-end mx-2 border rounded-3 mb-3 mt-2 ${isEmpRoute ? 'justify-content-between' : 'justify-content-end'}`}>
+                {
+                    isEmpRoute && 
+                    <div className="col-md-3 d-flex">
+                        <button 
+                            type="button" 
+                            className="btn btn-success flex-grow-1 my-3"
+                        >
+                            <i className="bi bi-plus-circle fs-5"></i> &nbsp;New Employee
+                        </button>
+                    </div>
+                }
                 <div className="col-md-3">
                     <div className="input-group my-3">
                         <span className="input-group-text" id="basic-addon1"><i className="bi bi-search mb-2"></i></span>

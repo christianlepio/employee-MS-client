@@ -105,6 +105,7 @@ const Dashboard = () => {
                 employees={employees} 
                 requestError={requestError} 
                 isLoading={isLoading} 
+                isEmpRoute={false}
             />}
         </>
     )

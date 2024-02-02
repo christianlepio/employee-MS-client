@@ -2,12 +2,23 @@ import useTitle from "../hooks/useTitle"
 import useFetchEmployees from "../hooks/useFetchEmployees"
 
 import ListEmployee from "./ListEmployee"
+import { useEffect, useState } from "react"
 
 const EmployeePage = () => {
     // this will change the document title on top, dynamically
     useTitle('Employees')
 
     const { employees, requestError, isLoading } = useFetchEmployees('/users')
+    
+    const [allEmp, setAllEmp] = useState([])
+
+    useEffect(() => {
+        if (employees.length && !requestError && !isLoading) {
+            setAllEmp(employees.map(emp => {
+                return { ...emp }
+            }))
+        }
+    }, [employees, isLoading])
 
     return (
         <>
@@ -16,7 +27,7 @@ const EmployeePage = () => {
             </div>
 
             {<ListEmployee 
-                employees={employees} 
+                employees={allEmp} 
                 requestError={requestError} 
                 isLoading={isLoading} 
                 isEmpRoute={true}

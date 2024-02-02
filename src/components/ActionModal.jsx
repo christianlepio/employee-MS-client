@@ -40,7 +40,7 @@ const ActionModal = ({ actionmdId, employee }) => {
                                 <li
                                     type="button"
                                     className={`${isDark ? 'option-hover1' : 'option-hover'} list-group-item fw-medium text-secondary`}
-
+                                    data-bs-dismiss="modal"
                                 >
                                     <i className="fs-5 me-3 bi bi-trash text-danger"></i> Delete Employee
                                 </li>

@@ -90,7 +90,7 @@ const AddEmpModal = ({ empId }) => {
                                         className="btn btn-info flex-grow-1 mt-2 text-white"
                                         // disabled={!canSignIn}
                                     >
-                                        Sign Up
+                                        Submit
                                     </button>
                                 </div>
                             </form>

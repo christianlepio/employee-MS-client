@@ -93,6 +93,17 @@
     background-color: #fff !important;
 }
 
+.option-hover:hover{
+    background-color: var(--bs-light) !important;
+    /* cursor: pointer; */
+}
+
+.option-hover1:hover{
+    background-color: var(--bs-light-bg-subtle) !important;
+    color: var(--bs-light) !important;
+    /* cursor: pointer; */
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }

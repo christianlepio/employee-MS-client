@@ -1,6 +1,9 @@
+import useAuth from "../hooks/useAuth"
+import EmpModal from "./EmpModal"
 
+const ActionModal = ({ actionmdId, employee }) => {
+    const { isDark } = useAuth()
 
-const ActionModal = ({ actionmdId }) => {
     return (
         <>
             {/* Modal */}
@@ -18,6 +21,30 @@ const ActionModal = ({ actionmdId }) => {
                             <p><i className="bi bi-check text-success"></i>&nbsp; {`Lastname: ${prEmployee.lastName}`}</p>
                             <p><i className="bi bi-check text-success"></i>&nbsp; {`Birthdate: ${prEmployee.bdate}`}</p>
                             <p><i className="bi bi-check text-success"></i>&nbsp; {`Roles: ${prEmployee.roles}`}</p> */}
+                            <ul className={"list-group list-group-flush border rounded-3 shadow-sm"}>
+                                <li
+                                    type="button"
+                                    className={`${isDark ? 'option-hover1' : 'option-hover'} list-group-item fw-medium text-secondary`}
+                                    data-bs-toggle="modal" 
+                                    data-bs-target={`#empModal${employee.rowNum}`}
+                                >
+                                    <i className="fs-5 me-3 bi bi-eye text-primary"></i> View Details
+                                </li>
+                                <li
+                                    type="button"
+                                    className={`${isDark ? 'option-hover1' : 'option-hover'} list-group-item fw-medium text-secondary`}
+
+                                >
+                                    <i className="fs-5 me-3 bi bi-pencil-square text-warning"></i> Edit Details
+                                </li>
+                                <li
+                                    type="button"
+                                    className={`${isDark ? 'option-hover1' : 'option-hover'} list-group-item fw-medium text-secondary`}
+
+                                >
+                                    <i className="fs-5 me-3 bi bi-trash text-danger"></i> Delete Employee
+                                </li>
+                            </ul>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -25,6 +52,12 @@ const ActionModal = ({ actionmdId }) => {
                     </div>
                 </div>
             </div>
+
+            <EmpModal 
+                mdlId={`empModal${employee.rowNum}`}
+                prEmployee={employee}
+            />
+
         </>
     )
 }

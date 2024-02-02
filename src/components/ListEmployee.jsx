@@ -51,6 +51,7 @@ const ListEmployee = ({ employees, requestError, isLoading, isEmpRoute }) => {
                         </button>
                         <ActionModal 
                             actionmdId={`actionEmpModal${rowData.rowNum}`}
+                            employee={rowData}
                         />
                     </>
                 }

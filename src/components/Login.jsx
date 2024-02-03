@@ -166,9 +166,9 @@ const Login = () => {
                             >
                                 Sign Up
                             </button>
-                            <AddEmpModal empId={'signUpEmpIdModal'}/>
                         </div>
                     </form>
+                    <AddEmpModal empId={'signUpEmpIdModal'}/>
                 </div>
             </div>
         </main>

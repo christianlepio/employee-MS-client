@@ -113,10 +113,10 @@ const AddEmpModal = ({ empId }) => {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="usernameInput" className="form-label">Username</label></small>
+                                    <small><label htmlFor="usernameInput1" className="form-label">Username</label></small>
                                     <input 
                                         type="text" 
-                                        id="usernameInput"
+                                        id="usernameInput1"
                                         placeholder="Enter username here:"
                                         className="form-control mb-1"
                                         value={username}
@@ -126,10 +126,10 @@ const AddEmpModal = ({ empId }) => {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="pwdInput" className="form-label">Password</label></small>
+                                    <small><label htmlFor="pwdInput1" className="form-label">Password</label></small>
                                     <input 
                                         type="password" 
-                                        id="pwdInput"
+                                        id="pwdInput1"
                                         placeholder="Enter password here:" 
                                         className="form-control mb-1"
                                         value={password}

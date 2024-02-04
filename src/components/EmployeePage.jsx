@@ -3,6 +3,7 @@ import useFetchEmployees from "../hooks/useFetchEmployees"
 
 import ListEmployee from "./ListEmployee"
 import { useEffect, useState } from "react"
+import useAuth from "../hooks/useAuth"
 
 const EmployeePage = () => {
     // this will change the document title on top, dynamically
@@ -10,7 +11,8 @@ const EmployeePage = () => {
 
     const { employees, requestError, isLoading } = useFetchEmployees('/users')
     
-    const [allEmp, setAllEmp] = useState([])
+    // const [allEmp, setAllEmp] = useState([])
+    const { allEmp, setAllEmp } = useAuth()
 
     useEffect(() => {
         if (employees.length && !requestError && !isLoading) {

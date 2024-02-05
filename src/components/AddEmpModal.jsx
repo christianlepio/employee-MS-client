@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import useAxiosPrivate from "../hooks/useAxiosPrivate"
 import { ROLES } from '../config/roles'
+import useAuth from "../hooks/useAuth"
 
 const AddEmpModal = ({ empId }) => {
     const axiosPrivate = useAxiosPrivate()
+    const { allEmp, setAllEmp } = useAuth()
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -14,6 +16,10 @@ const AddEmpModal = ({ empId }) => {
     const [roles, setRoles] = useState(["Employee"])
 
     const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        console.log('allEmp: ', allEmp)
+    }, [allEmp, setAllEmp])
 
     const onRolesChanged = e => {
         const values = Array.from(
@@ -52,6 +58,10 @@ const AddEmpModal = ({ empId }) => {
                 )
 
                 console.log('New Employee added!')
+                
+                console.log('response: ', response)
+
+                setAllEmp([ ...allEmp, response.data?.userData ])
                 
             } catch (err) {
                 console.log('Add new Employee Error: ', err)

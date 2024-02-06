@@ -1,8 +1,27 @@
 import useAuth from "../hooks/useAuth"
 import EmpModal from "./EmpModal"
+import useAxiosPrivate from "../hooks/useAxiosPrivate"
 
 const ActionModal = ({ actionmdId, employee }) => {
-    const { isDark } = useAuth()
+    const { isDark, allEmp, setAllEmp } = useAuth()
+    const axiosPrivate = useAxiosPrivate()
+
+    const deleteEmployee = async () => {
+        try {
+            const response = await axiosPrivate.delete('/users', {
+                    data: {
+                        id: employee._id
+                    }
+                }
+            )
+
+            console.log(`Employee with ID ${employee._id} has been deleted!`)
+
+            setAllEmp(allEmp.filter(emp => emp._id !== employee._id))
+        } catch (err) {
+            console.log('Delete employee error: ', err)
+        }
+    }
 
     return (
         <>
@@ -15,12 +34,6 @@ const ActionModal = ({ actionmdId, employee }) => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body text-start">
-                            {/* <p><i className="bi bi-check text-success"></i>&nbsp; {`Status: ${prEmployee.active ? 'Active Employee' : 'Inactive Employee'}`}</p>
-                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Username: ${prEmployee.username}`}</p>
-                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Firstname: ${prEmployee.firstName}`}</p>
-                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Lastname: ${prEmployee.lastName}`}</p>
-                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Birthdate: ${prEmployee.bdate}`}</p>
-                            <p><i className="bi bi-check text-success"></i>&nbsp; {`Roles: ${prEmployee.roles}`}</p> */}
                             <ul className={"list-group list-group-flush border rounded-3 shadow-sm"}>
                                 <li
                                     type="button"
@@ -41,6 +54,7 @@ const ActionModal = ({ actionmdId, employee }) => {
                                     type="button"
                                     className={`${isDark ? 'option-hover1' : 'option-hover'} list-group-item fw-medium text-secondary`}
                                     data-bs-dismiss="modal"
+                                    onClick={deleteEmployee}
                                 >
                                     <i className="fs-5 me-3 bi bi-trash text-danger"></i> Delete Employee
                                 </li>

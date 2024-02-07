@@ -1,4 +1,5 @@
-import React from 'react'
+import { useState } from 'react'
+import { ROLES } from '../config/roles'
 import useAuth from '../hooks/useAuth'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
 
@@ -6,13 +7,13 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
     const axiosPrivate = useAxiosPrivate()
     const { allEmp, setAllEmp } = useAuth()
 
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState(prEmployee.username)
     const [password, setPassword] = useState('')
     const [confirmPass, setConfirmPass] = useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [bdate, setBdate] = useState('')
-    const [roles, setRoles] = useState(["Employee"])
+    const [firstName, setFirstName] = useState(prEmployee.firstName)
+    const [lastName, setLastName] = useState(prEmployee.lastName)
+    const [bdate, setBdate] = useState(prEmployee.bdate)
+    const [roles, setRoles] = useState([prEmployee.roles])
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -21,7 +22,7 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
             e.target.selectedOptions, 
             (option) => option.value
         )
-
+        console.log('values: ', values)
         setRoles(values)
     }
 
@@ -52,10 +53,10 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                         <div className="modal-body text-start">
                             <form className="row" onSubmit={editEmployee}>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="firstnameInput" className="form-label">Firstname</label></small>
+                                    <small><label htmlFor={`firstnameInputEdit${prEmployee.rowNum}`} className="form-label">Firstname</label></small>
                                     <input 
                                         type="text" 
-                                        id="firstnameInput"
+                                        id={`firstnameInputEdit${prEmployee.rowNum}`}
                                         placeholder="Enter firstname here:"
                                         className="form-control mb-1"
                                         value={firstName}
@@ -64,10 +65,10 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="lastnameInput" className="form-label">Lastname</label></small>
+                                    <small><label htmlFor={`lastnameInputEdit${prEmployee.rowNum}`} className="form-label">Lastname</label></small>
                                     <input 
                                         type="text" 
-                                        id="lastnameInput"
+                                        id={`lastnameInputEdit${prEmployee.rowNum}`}
                                         placeholder="Enter lastname here:"
                                         className="form-control mb-1"
                                         value={lastName}
@@ -76,10 +77,10 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="birth dateInput" className="form-label">Birthdate</label></small>
+                                    <small><label htmlFor={`edBirthdateInput${prEmployee.rowNum}`} className="form-label">Birthdate</label></small>
                                     <input 
                                         type="date" 
-                                        id="birth dateInput"
+                                        id={`edBirthdateInput${prEmployee.rowNum}`}
                                         placeholder="Enter birth date here:"
                                         className="form-control mb-1"
                                         value={bdate}
@@ -88,10 +89,10 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="usernameInput1" className="form-label">Username</label></small>
+                                    <small><label htmlFor={`usernameInputEd${prEmployee.rowNum}`} className="form-label">Username</label></small>
                                     <input 
                                         type="text" 
-                                        id="usernameInput1"
+                                        id={`usernameInputEd${prEmployee.rowNum}`}
                                         placeholder="Enter username here:"
                                         className="form-control mb-1"
                                         value={username}
@@ -101,10 +102,10 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="pwdInput1" className="form-label">Password</label></small>
+                                    <small><label htmlFor={`edPwdInput1${prEmployee.rowNum}`} className="form-label">Password</label></small>
                                     <input 
                                         type="password" 
-                                        id="pwdInput1"
+                                        id={`edPwdInput1${prEmployee.rowNum}`}
                                         placeholder="Enter password here:" 
                                         className="form-control mb-1"
                                         value={password}
@@ -112,10 +113,10 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                     />
                                 </div>
                                 <div className="col-md-6 mb-3">
-                                    <small><label htmlFor="pwdInput2" className="form-label">Confirm Password</label></small>
+                                    <small><label htmlFor={`edPwdInput2${prEmployee.rowNum}`} className="form-label">Confirm Password</label></small>
                                     <input 
                                         type="password" 
-                                        id="pwdInput2"
+                                        id={`edPwdInput2${prEmployee.rowNum}`}
                                         placeholder="Confirm password here:" 
                                         className="form-control mb-1"
                                         value={confirmPass}
@@ -123,12 +124,12 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                     />
                                 </div>
                                 <div className="col-md mb-3">
-                                    <small><label htmlFor="rolesInput" className="form-label">Assigned Roles</label></small>
+                                    <small><label htmlFor={`edRolesInput${prEmployee.rowNum}`} className="form-label">Assigned Roles</label></small>
                                     <select 
                                         className="form-select" 
-                                        id="rolesInput"
-                                        name="rolesInput" 
-                                        aria-describedby="rolesInputFeedback" 
+                                        id={`edRolesInput${prEmployee.rowNum}`}
+                                        name={`edRolesInput${prEmployee.rowNum}`} 
+                                        aria-describedby={`edRolesInputFeedback${prEmployee.rowNum}`} 
                                         multiple={true} // this allows us to select multiple options
                                         size='3' // this will diplay maximum of 3 values in the input
                                         value={roles}

@@ -1,6 +1,7 @@
 import useAuth from "../hooks/useAuth"
 import EmpModal from "./EmpModal"
 import useAxiosPrivate from "../hooks/useAxiosPrivate"
+import EditEmpModal from "./EditEmpModal"
 
 const ActionModal = ({ actionmdId, employee }) => {
     const { isDark, allEmp, setAllEmp } = useAuth()
@@ -46,7 +47,8 @@ const ActionModal = ({ actionmdId, employee }) => {
                                 <li
                                     type="button"
                                     className={`${isDark ? 'option-hover1' : 'option-hover'} list-group-item fw-medium text-secondary`}
-
+                                    data-bs-toggle="modal" 
+                                    data-bs-target={`#editEmp${employee.rowNum}`}
                                 >
                                     <i className="fs-5 me-3 bi bi-pencil-square text-warning"></i> Edit Details
                                 </li>
@@ -69,6 +71,11 @@ const ActionModal = ({ actionmdId, employee }) => {
 
             <EmpModal 
                 mdlId={`empModal${employee.rowNum}`}
+                prEmployee={employee}
+            />
+
+            <EditEmpModal 
+                editMdlId={`editEmp${employee.rowNum}`}
                 prEmployee={employee}
             />
 

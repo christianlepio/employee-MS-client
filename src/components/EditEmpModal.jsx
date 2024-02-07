@@ -13,6 +13,8 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
 
     const rolesArray = prEmployee.roles.split(', ')
 
+    const isActiveTemp = prEmployee.active === 'Active' ? true : false
+
     const [username, setUsername] = useState(prEmployee.username)
     const [password, setPassword] = useState('')
     const [confirmPass, setConfirmPass] = useState('')
@@ -20,6 +22,7 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
     const [lastName, setLastName] = useState(prEmployee.lastName)
     const [bdate, setBdate] = useState(formattedDate)
     const [roles, setRoles] = useState(rolesArray)
+    const [isActive, setIsActive] = useState(isActiveTemp)
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -129,7 +132,7 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                         onChange={(e) => setConfirmPass(e.target.value)}
                                     />
                                 </div>
-                                <div className="col-md mb-3">
+                                <div className="col-md-12 mb-3">
                                     <small><label htmlFor={`edRolesInput${prEmployee.rowNum}`} className="form-label">Assigned Roles</label></small>
                                     <select 
                                         className="form-select" 
@@ -144,6 +147,22 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
                                         {options}
                                     </select>
                                 </div>
+
+                                {/* checkbox for active */}
+                                <div className="col-md mb-3">
+                                    <div className="form-check form-switch">
+                                        <input 
+                                            className="form-check-input" 
+                                            type="checkbox" 
+                                            role="switch" 
+                                            id={`flexSwitchCheckDefault${prEmployee.rowNum}`} 
+                                            checked={isActive}
+                                            onChange={() => setIsActive(prev => !prev)}
+                                        />
+                                        <label className="form-check-label" htmlFor={`flexSwitchCheckDefault${prEmployee.rowNum}`}> Activate User</label>
+                                    </div>
+                                </div>
+
                                 <div className="d-flex">
                                     <button 
                                         type="submit"

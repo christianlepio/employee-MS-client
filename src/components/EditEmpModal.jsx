@@ -45,8 +45,16 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
         )
     })
 
-    const editEmployee = async () => {
-
+    const editEmployee = async (e) => {
+        e.preventDefault()
+        
+        console.log(firstName)
+        console.log(lastName)
+        console.log(bdate)
+        console.log(username)
+        console.log(password)
+        console.log(roles)
+        console.log(isActive)
     }
 
     return (

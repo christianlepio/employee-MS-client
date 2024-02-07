@@ -2,18 +2,24 @@ import { useState } from 'react'
 import { ROLES } from '../config/roles'
 import useAuth from '../hooks/useAuth'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
+import { format } from 'date-fns'
 
 const EditEmpModal = ({ editMdlId, prEmployee }) => {
     const axiosPrivate = useAxiosPrivate()
     const { allEmp, setAllEmp } = useAuth()
+
+    const inputDate = new Date(prEmployee.bdate)
+    const formattedDate = format(inputDate, 'yyyy-MM-dd')
+
+    const rolesArray = prEmployee.roles.split(', ')
 
     const [username, setUsername] = useState(prEmployee.username)
     const [password, setPassword] = useState('')
     const [confirmPass, setConfirmPass] = useState('')
     const [firstName, setFirstName] = useState(prEmployee.firstName)
     const [lastName, setLastName] = useState(prEmployee.lastName)
-    const [bdate, setBdate] = useState(prEmployee.bdate)
-    const [roles, setRoles] = useState([prEmployee.roles])
+    const [bdate, setBdate] = useState(formattedDate)
+    const [roles, setRoles] = useState(rolesArray)
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -22,7 +28,7 @@ const EditEmpModal = ({ editMdlId, prEmployee }) => {
             e.target.selectedOptions, 
             (option) => option.value
         )
-        console.log('values: ', values)
+
         setRoles(values)
     }
 
